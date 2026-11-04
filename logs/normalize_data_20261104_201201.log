@@ -1,0 +1,9 @@
+2026-11-04 20:12:01,460 | INFO | raw before: data/raw/Weather.csv = 34ee981d07313e51da2a50bb600072c8ae4a69cb4b0651f4cb93a069d7a2ba63
+2026-11-04 20:12:01,460 | INFO | long before: data/raw/Weather_tfb_long.csv = 7a6cf692e2b19ac7e9ed2d51c48799d4e49aa0013042282c5b1da5239fe65ae5
+2026-11-04 20:12:01,710 | INFO | loaded 52696 rows x 22 columns
+2026-11-04 20:12:01,809 | INFO | investigation: 3 damaged columns, 81 sentinel cells in 80 rows, 1 duplicate groups, 1 gaps
+2026-11-04 20:12:05,081 | INFO | candidate raw: data/processed/weather_stage1_candidate_raw.csv
+2026-11-04 20:12:05,081 | INFO | candidate masked: data/processed/weather_stage1_candidate_masked.csv
+2026-11-04 20:12:06,069 | INFO | verification: {'raw_candidate_rows_match': True, 'raw_candidate_columns_match': True, 'raw_candidate_values_identical': True, 'masked_rows_match': True, 'masked_columns_match': True, 'masked_time_column_unchanged': True, 'masked_nan_cells': 81, 'expected_nan_cells': 81, 'masked_sentinel_cells_remaining': 0, 'masked_other_values_unchanged': True, 'raw_sha256_unchanged': True, 'long_sha256_unchanged': True}
+2026-11-04 20:12:06,089 | INFO | report: reports/weather_data_normalization.md
+2026-11-04 20:12:06,090 | INFO | log: logs/normalize_data_20261104_201201.log

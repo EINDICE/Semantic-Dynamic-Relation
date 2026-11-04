@@ -1,0 +1,7 @@
+2026-11-04 19:40:42,765 | INFO | 读取主数据文件: D:\THU\Projects\202611\Semantic-Dynamic-Relation\data\raw\Weather.csv
+2026-11-04 19:40:43,782 | INFO | 交叉校验长表: D:\THU\Projects\202611\Semantic-Dynamic-Relation\data\raw\Weather_tfb_long.csv
+2026-11-04 19:40:46,076 | INFO | table: D:\THU\Projects\202611\Semantic-Dynamic-Relation\results\tables\weather_summary.csv
+2026-11-04 19:40:46,076 | INFO | table: D:\THU\Projects\202611\Semantic-Dynamic-Relation\results\tables\weather_variables.csv
+2026-11-04 19:40:46,077 | INFO | table: D:\THU\Projects\202611\Semantic-Dynamic-Relation\results\tables\weather_audit.json
+2026-11-04 19:40:46,077 | INFO | report: D:\THU\Projects\202611\Semantic-Dynamic-Relation\reports\weather_data_check.md
+2026-11-04 19:40:46,077 | INFO | log: D:\THU\Projects\202611\Semantic-Dynamic-Relation\logs\check_data_20261104_194042.log

@@ -1,0 +1,27 @@
+{
+  "python_executable": "C:\\Users\\ZhaoChenguang\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+  "python_version": "3.10.6",
+  "implementation": "CPython",
+  "sys_prefix": "C:\\Users\\ZhaoChenguang\\AppData\\Local\\Programs\\Python\\Python310",
+  "sys_base_prefix": "C:\\Users\\ZhaoChenguang\\AppData\\Local\\Programs\\Python\\Python310",
+  "is_virtual_environment": false,
+  "platform": "Windows-10-10.0.26200-SP0",
+  "versions": {
+    "pandas": "2.2.0",
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9",
+    "seaborn": "0.11.2",
+    "scikit-learn": "1.1.2",
+    "torch": "2.5.1+cu121",
+    "transformers": "4.49.0",
+    "PyYAML": "6.0.1",
+    "huggingface_hub": "0.36.2"
+  },
+  "phase1_required": [
+    "numpy",
+    "pandas",
+    "PyYAML"
+  ],
+  "phase1_missing": []
+}

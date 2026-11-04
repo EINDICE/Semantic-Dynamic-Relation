@@ -1,0 +1,22 @@
+channel_id,original_column,stable_channel_id,canonical_name,candidate_name,evidence_type,evidence_source,confidence,status,applied_to_candidates,notes
+0,p (mbar),CH_00,p (mbar),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+1,T (degC),CH_01,T (degC),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+2,Tpot (K),CH_02,Tpot (K),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+3,Tdew (degC),CH_03,Tdew (degC),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+4,rh (%),CH_04,rh (%),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+5,VPmax (mbar),CH_05,VPmax (mbar),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+6,VPact (mbar),CH_06,VPact (mbar),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+7,VPdef (mbar),CH_07,VPdef (mbar),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+8,sh (g/kg),CH_08,sh (g/kg),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+9,H2OC (mmol/mol),CH_09,H2OC (mmol/mol),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+10,rho (g/m**3),CH_10,rho (g/m**3),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+11,wv (m/s),CH_11,wv (m/s),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+12,max. wv (m/s),CH_12,max. wv (m/s),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+13,wd (deg),CH_13,wd (deg),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+14,rain (mm),CH_14,rain (mm),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+15,raining (s),CH_15,raining (s),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+16,SWDR (W/m�),CH_16,,SWDR (W/m**2),hardcoded_ascii_approximation_no_provenance,../ChannelSemanticAlignment/scripts/run_timecma_multidataset.py:68,low,Unknown — pending human decision,no (original column name preserved; stable ID used),所有本地副本表头均含 U+FFFD，损伤不可逆；候选名仅为引用，未应用
+17,PAR (�mol/m�/s),CH_17,,PAR (umol/m**2/s),hardcoded_ascii_approximation_no_provenance,../ChannelSemanticAlignment/scripts/run_timecma_multidataset.py:69,low,Unknown — pending human decision,no (original column name preserved; stable ID used),所有本地副本表头均含 U+FFFD，损伤不可逆；候选名仅为引用，未应用
+18,max. PAR (�mol/m�/s),CH_18,,max. PAR (umol/m**2/s),hardcoded_ascii_approximation_no_provenance,../ChannelSemanticAlignment/scripts/run_timecma_multidataset.py:70,low,Unknown — pending human decision,no (original column name preserved; stable ID used),所有本地副本表头均含 U+FFFD，损伤不可逆；候选名仅为引用，未应用
+19,Tlog (degC),CH_19,Tlog (degC),,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样
+20,OT,CH_20,OT,,dataset_header,data/raw/Weather.csv:1,high,confirmed_from_header,no_renaming_needed,列名不含 U+FFFD，保持原样

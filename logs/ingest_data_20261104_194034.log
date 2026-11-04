@@ -1,0 +1,5 @@
+2026-11-04 19:40:34,801 | INFO | weather_wide | skipped_target_exists | D:\THU\Projects\202611\Semantic-Dynamic-Relation\..\ChannelSemanticAlignment\data\raw\benchmark\Weather.csv -> D:\THU\Projects\202611\Semantic-Dynamic-Relation\data\raw\Weather.csv | sha256_match=True | source_unchanged=True
+2026-11-04 19:40:35,848 | INFO | weather_long_tfb | copied | D:\THU\Projects\202611\Semantic-Dynamic-Relation\..\ChannelSemanticAlignment\archive\tfb_raw\Weather.csv -> D:\THU\Projects\202611\Semantic-Dynamic-Relation\data\raw\Weather_tfb_long.csv | sha256_match=True | source_unchanged=True
+2026-11-04 19:40:35,866 | INFO | manifest: D:\THU\Projects\202611\Semantic-Dynamic-Relation\data\metadata\data_manifest.csv
+2026-11-04 19:40:35,867 | INFO | channel description template (created): D:\THU\Projects\202611\Semantic-Dynamic-Relation\data\metadata\channel_descriptions.template.csv
+2026-11-04 19:40:35,867 | INFO | log: D:\THU\Projects\202611\Semantic-Dynamic-Relation\logs\ingest_data_20261104_194034.log

@@ -1,0 +1,75 @@
+# Semantic-Dynamic-Relation / 第一阶段（初始化 + 数据接入 + 数据检查）统一配置
+# 约定：所有路径均为相对于项目根目录的相对路径；外部只读来源也以 ../ 形式相对书写。
+
+project:
+  name: Semantic-Dynamic-Relation
+  stage: phase1_data_audit
+  seed: 42                      # 全局固定随机种子
+  root: .
+
+environment:
+  # 复用 BEDTime 项目实际运行的 Python 3.10.6 全局解释器，不新建 .venv，不改动该环境
+  python_executable: "C:/Users/ZhaoChenguang/AppData/Local/Programs/Python/Python310/python.exe"
+  python_version: "3.10.6"
+  reuse_bedtime_environment: true
+  create_new_venv: false
+  install_packages: false       # 禁止在本阶段安装/升级任何依赖
+
+data:
+  raw_dir: data/raw
+  processed_dir: data/processed        # Stage 1 候选数据（非最终版本）
+  metadata_dir: data/metadata
+  source:                       # 外部只读来源，脚本只读取、绝不写入
+    weather_wide: ../ChannelSemanticAlignment/data/raw/benchmark/Weather.csv
+    weather_long: ../ChannelSemanticAlignment/archive/tfb_raw/Weather.csv
+  weather:
+    primary: data/raw/Weather.csv                 # 宽表 (date + 21 通道)，主分析文件
+    long_format: data/raw/Weather_tfb_long.csv    # TFB 长表，用于完整性交叉校验
+    time_column: date
+    encoding: utf-8
+    expected_frequency: 10min
+    read_only: true             # data/raw/ 内文件只读，任何脚本不得写回
+  manifest: data/metadata/data_manifest.csv
+  channel_descriptions_template: data/metadata/channel_descriptions.template.csv
+
+model:
+  name: unset                   # 第一阶段不训练/不命名模型，仅占位
+  enabled: false
+
+experiment:
+  train_model: false
+  compute_semantic_matrix: false
+  compute_dynamic_matrix: false
+  load_embedding_model: false
+  audit:
+    outlier_method: iqr
+    iqr_multiplier: 1.5
+    sentinel_values: [-9999]   # 疑似哨兵/占位值，仅统计，不替换、不修改原始数据
+    check_duplicate_rows: true
+    check_time_continuity: true
+    cross_check_long_format: true
+
+  # Stage 1：Weather 数据规范化。规则未确认前只生成候选版本，status 保持待人工决策。
+  stage1:
+    enabled: true
+    status: pending_human_decision
+    stable_id_prefix: "CH_"
+    sentinel_values: [-9999]         # 与 audit.sentinel_values 一致；仅统计/建掩码，不插值、不填 0
+    expected_frequency: 10min
+    outputs:
+      candidate_raw: weather_stage1_candidate_raw.csv
+      candidate_masked: weather_stage1_candidate_masked.csv
+      missing_mask: weather_stage1_missing_mask.csv
+      timeline_issues: weather_stage1_timeline_issues.csv
+      processed_manifest: processed_manifest.csv
+    metadata:
+      channel_name_mapping: data/metadata/channel_name_mapping.csv
+      data_cleaning_decisions: data/metadata/data_cleaning_decisions.csv
+    report: reports/weather_data_normalization.md
+
+outputs:
+  tables_dir: results/tables
+  figures_dir: results/figures
+  matrices_dir: results/matrices
+  reports_dir: reports
+  logs_dir: logs

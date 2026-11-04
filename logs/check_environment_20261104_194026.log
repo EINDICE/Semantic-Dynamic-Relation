@@ -1,0 +1,15 @@
+2026-11-04 19:40:27,228 | INFO | python_executable=C:\Users\ZhaoChenguang\AppData\Local\Programs\Python\Python310\python.exe
+2026-11-04 19:40:27,228 | INFO | python_version=3.10.6
+2026-11-04 19:40:27,228 | INFO | is_virtual_environment=False
+2026-11-04 19:40:27,230 | INFO | pandas=2.2.0
+2026-11-04 19:40:27,230 | INFO | numpy=1.26.4
+2026-11-04 19:40:27,230 | INFO | scipy=1.15.3
+2026-11-04 19:40:27,230 | INFO | matplotlib=3.10.9
+2026-11-04 19:40:27,230 | INFO | seaborn=0.11.2
+2026-11-04 19:40:27,230 | INFO | scikit-learn=1.1.2
+2026-11-04 19:40:27,230 | INFO | torch=2.5.1+cu121
+2026-11-04 19:40:27,231 | INFO | transformers=4.49.0
+2026-11-04 19:40:27,231 | INFO | PyYAML=6.0.1
+2026-11-04 19:40:27,231 | INFO | huggingface_hub=0.36.2
+2026-11-04 19:40:27,231 | INFO | phase1_required=['numpy', 'pandas', 'PyYAML']
+2026-11-04 19:40:27,231 | INFO | phase1_missing=none

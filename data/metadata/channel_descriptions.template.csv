@@ -1,0 +1,22 @@
+channel_id,channel_name,description,unit,source,provenance,verified
+0,p (mbar),,,,,pending
+1,T (degC),,,,,pending
+2,Tpot (K),,,,,pending
+3,Tdew (degC),,,,,pending
+4,rh (%),,,,,pending
+5,VPmax (mbar),,,,,pending
+6,VPact (mbar),,,,,pending
+7,VPdef (mbar),,,,,pending
+8,sh (g/kg),,,,,pending
+9,H2OC (mmol/mol),,,,,pending
+10,rho (g/m**3),,,,,pending
+11,wv (m/s),,,,,pending
+12,max. wv (m/s),,,,,pending
+13,wd (deg),,,,,pending
+14,rain (mm),,,,,pending
+15,raining (s),,,,,pending
+16,SWDR (W/m�),,,,,pending
+17,PAR (�mol/m�/s),,,,,pending
+18,max. PAR (�mol/m�/s),,,,,pending
+19,Tlog (degC),,,,,pending
+20,OT,,,,,pending

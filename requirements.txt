@@ -1,0 +1,9 @@
+# Semantic-Dynamic-Relation —— 第一阶段「实际 import 并使用」的依赖（版本记录）
+# 复用 BEDTime 项目共享环境 Python 3.10.6；本文件仅用于记录，请勿执行安装或升级。
+# 共享环境已具备以下版本，无需 pip install，禁止 pip install -U。
+numpy==1.26.4
+pandas==2.2.0
+PyYAML==6.0.1
+
+# 说明：scipy / matplotlib / seaborn / scikit-learn / torch / transformers 虽在共享环境中已安装，
+# 但第一阶段（数据接入与数据检查）并未 import，因此不列入本文件；后续阶段按需再追加。

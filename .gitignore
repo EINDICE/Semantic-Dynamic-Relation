@@ -1,0 +1,44 @@
+# ---- Python 缓存与临时文件 ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+*.tmp
+*.temp
+*.bak
+*.swp
+~$*
+.DS_Store
+Thumbs.db
+
+# ---- 虚拟环境（本项目复用 BEDTime 共享环境，不创建）----
+.venv/
+venv/
+env/
+
+# ---- 模型权重与检查点 ----
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+checkpoints/
+runs/
+
+# ---- 大型/二进制中间文件 ----
+data/interim/
+data/processed/
+*.npy.tmp
+*.npz.tmp
+*.pkl.tmp
+*.parquet.tmp
+*.h5
+*.hdf5
+*.zip
+*.tar.gz
+
+# ---- 说明 ----
+# results/ 与 reports/ 中的轻量文本产物（.csv/.md/.json）以及 logs/*.log 保留归档。
+# data/raw/ 中的原始数据为只读副本，不做修改、不重复生成。
