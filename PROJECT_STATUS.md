@@ -1,7 +1,7 @@
 # PROJECT_STATUS — Semantic-Dynamic-Relation
 
-- 当前阶段：**Stage 1（Weather 数据规范化）—— 候选产物已完成，清洗策略待人工决策**（Stage 0 初始化 / 数据接入 / 数据检查已完成）
-- 最后更新：2026-11-04（新增 Stage 1 记录，见第五节）
+- 当前阶段：**Stage 1.5（数据决策预案与 Stage 2 前置准备）—— 已完成；清洗策略仍全部 Unknown，未生成最终规范化版本**
+- 最后更新：2026-11-04（新增 Stage 1.5 记录，见第六节）
 - 共享环境：`C:\Users\ZhaoChenguang\AppData\Local\Programs\Python\Python310\python.exe`（Python 3.10.6，复用 BEDTime，无新建 `.venv`）
 - 固定随机种子：42（`configs/experiment.yaml`）
 
@@ -42,6 +42,7 @@
 
 - 研究问题尚未开始验证，不得据此声称任何关于语义/动态关系一致性的结论。
 - Stage 1 事实调查已完成，**6 项清洗策略等待人工决策**（见第五节）；确认前不生成最终规范化版本。
+- Stage 1.5 已完成预案、接口规范、证据清单与时间连续性函数（见第六节），**仅新增待决协议项 P-S1~P-S9，未改变任何决策状态**。
 
 ## 三、待办 / 下一阶段缺少的输入（阻塞项，等待确认）
 
@@ -98,3 +99,58 @@
 - 未删除重复行、未补齐或重采样时间轴、未插值、未把 `-9999` 替换为 0 或其他值；
 - 未把候选规范列名应用到数据文件，未生成通道语义描述；
 - 未构建语义关系矩阵、动态关系矩阵，未训练模型，未安装或升级依赖。
+
+---
+
+## 六、Stage 1.5：数据决策预案与 Stage 2 前置准备（2026-11-04 新增）
+
+- **状态**：准备阶段完成；所有清洗决策仍为 `Unknown — pending human decision`；**未生成最终规范化数据集**。
+- **报告**：`reports/stage1_5_preparation.md`；**新增代码**：`src/continuity.py`（独立的时间连续性检查函数）。
+- 本轮未新建任何数据文件、未覆盖 Stage 1 候选文件、未修改 `data/raw/` / BEDTime / 其他项目，未安装或升级依赖。
+
+### 6.1 已完成
+
+1. **7 条暂定原则一致性检查**：无硬逻辑冲突；识别 2 处语义层级混同（C1：P3 语义认定 vs 计算视图；C4：数据层保留 vs 窗口视图排除）、1 处覆盖缺口（C2：P6 只覆盖 100 分钟缺口，未覆盖 0 / 20 分钟间隔）、3 项实现与协议建议（C3 / C5 / C6）。建议把 P6 扩展为「任何 `≠10min` 的间隔均为硬边界」并预注册敏感性阈值。
+2. **双视图接口契约**：`RAW_VIEW` / `MASKED_VIEW` 是只读逻辑别名，分别指向 Stage 1 候选 A / B（状态仍为 `candidate — not final`）；定义 `view` 必填、结果元数据、`nan_origin` 标签、双视图并列对比协议与禁止择优规则。**本轮未实现计算，未产出任何关系指标**。
+3. **独立时间连续性函数** `src/continuity.py`：`check_time_continuity()` / `estimate_window_count()` / `validate_window()` / `validate_window_rows()`；以实际时间差判断、标记所有 `≠10min` 间隔、返回硬边界分段、重复策略显式传入、不删除或合并任何记录。
+4. **实际运行验证**：
+   - `boundary`：0 min @19043→19044、100 min @21513→21514（缺 9 片），3 段，W=24 窗口 52,627；
+   - `exclude_all`：0 分钟间隔变成 **20 分钟新缺口**（缺 1 片），仍 3 段，W=24 窗口 52,625；
+   - `keep_first`：仅 100 分钟缺口，2 段，W=24 窗口 52,649；
+   - 窗口校验：正常窗口 `valid=True`、跨缺口窗口与含排除行窗口 `valid=False`。
+5. **21 通道证据清单**（报告第 4 节）：19 个名称来自 CSV 表头（high）；3 个 ASCII 近似来自硬编码代码（low，**不得当作官方原始字段名**）；`official_documentation` 0 条；`OT` 单位 Unknown；全部通道存在未解决问题。
+6. **Stage 2 checklist 10 项** 与新待决协议项 P-S1~P-S9。
+
+### 6.2 进行中 / 待决
+
+- Stage 1 的 D01–D06 与本轮 P-S1–P-S9 **全部等待人工确认**；确认前不生成最终版本、不计算语义/动态关系矩阵。
+- 通道描述 provenance 仍缺（沿用 Stage 0 待办 #1）；本轮未生成任何通道描述。
+
+### 6.3 明确未执行
+
+- 未修改原始数据、未生成最终规范化数据集、未覆盖 Stage 1 候选文件；
+- 未生成正式通道描述、未构建语义/动态关系矩阵、未训练模型；
+- 未计算 Pearson / Spearman 或任何其他动态关系指标；未安装或升级依赖。
+
+## 七、Stage 3 Pilot — 多维度跨模态表示对齐（实验推进，2026-11-05 启动）
+
+> 依据总任务书《多维度跨模态表示对齐研究：实验推进总任务书》。目标：从研究设想到真实实验，构造增量文本视图、建立 TS-only/TS+Text 最小对照、验证不同对齐维度的作用与局限。Weather 为唯一核心数据；TRUCE/TRACE 本轮不参与。
+
+### 7.1 已完成（实际运行）
+- **资产盘点**：只读检索工作区，确认本项目无 TS 编码器/训练代码；可复用 `src/continuity.py`（连续性窗口）、相邻项目离线 TF-IDF/统计编码器、InfoNCE/CKA/RSA 评价范式（仅作参考，第三方 TimeCMA 以依赖方式引用）。
+- **第一版增量文本视图（dynamic）**：规则化（趋势↑↓→ / 波动 H/M/L/C / 极值 */^），纯数值依据、无 LLM、无臆造物理含义；生成 **8621 个连续无 NaN 的 4h 窗口样本**（W=24/S=6，boundary，masked 视图剔窗）。动态文本唯一比例 0.985、全常量窗口 0.0、无泄漏。产物 `05_Experiments/stage3_pilot/results/ts_text_samples.csv` + `text_views_stats.json`。
+- **`existing` 视图**：用户全局 Prompt V1 整段（逐字，SHA256 登记），**未拆分为 21 段**，符合约束。
+- **最小对照实验骨架**：4 组（A_ts_only / B_ts_existing / C_ts_dynamic / D_ts_both），`CrossModalModel`（1D-CNN TS 编码器 + TF-IDF 文本编码器 + 预测头 + 投影头）+ InfoNCE。Smoke Test 在本机 **CUDA** 上跑通（数据→前向→预测 MSE→InfoNCE→反向）。产物 `results/smoke_test_results.json`。
+- **报告 4 份**：`reports/stage3_experiment_plan.md`、`stage3_pilot_results.md`、`stage3_research_findings.md`、`stage3_alignment_space_analysis.md`。
+
+### 7.2 明确边界（沿用并强化）
+- `data/raw/` 只读（本次 `raw_csv_sha256=34ee981d…` 与 Stage 1 候选原始文件一致，证明未改）；未覆盖 Stage 1/1.5/1.6/2 任何产物。
+- 不拆分全局 Prompt；不臆造 `CH_20`/OT 或 3 个 U+FFFD 通道的物理含义；`-9999` 用 masked 视图剔窗处理。
+- Smoke Test 的 MSE 为**未归一化原始尺度**的健全性数字，**不是科学结论**；文本/对齐是否带来增量须在归一化、全量、含随机/置换文本对照下验证。
+
+### 7.3 下一步（待执行）
+- 接入 train-only 逐通道标准化（RAW/MASKED 双视图并列，Stage 1.6 候选）；用全部 8621 样本做正式基线训练。
+- 加随机/置换文本对照与伪对齐审计，分离「文本增量 / 普通融合 / 真正对齐」。
+- 接入 CKA/RSA/CCA + TS-specific 线性探针，回答 H5（是否损害模态特有信息）。
+- 据证据收敛研究问题，再决定是否进入 Stage A/B/C（独立/联合/自适应对齐）。
+- 如需租用 GPU 或产生付费，先报批。

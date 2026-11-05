@@ -1,0 +1,63 @@
+# Stage 3 Pilot 实验配置（pilot 候选值，未冻结；全部可复现）
+seed: 42
+project_root: ".."   # 相对本文件到 Semantic-Dynamic-Relation 根
+
+data:
+  raw_csv: "data/raw/Weather.csv"
+  time_column: date
+  n_channels: 21
+  sentinel: -9999
+  view: masked          # masked = -9999->NaN 并剔除含 NaN 窗口；raw 也可用但需另行处理
+  continuity_policy: boundary   # 复用 src/continuity.py
+  window_size: 24       # W（10min*24 = 4h），源自 Stage 1.6 候选主窗口
+  stride: 6             # S = W/4，Stage 1.6 候选
+  pred_len: 24          # 预测头目标窗口长度
+  target: next_window   # 预测窗口后接的下一个 window_size
+  split: chronological  # 时间序贯 70/15/15（候选，不默认）
+  split_ratios: [0.70, 0.85]
+  max_samples: 20000    # 生成样本上限（pilot）；改 None 可生成全部有效窗口
+
+text_views:
+  prompt_v1_sha256: "55aba83346bb7a5d7f07dab48302e4cd36609bafb2a2c3e517fa28e6a9b6e43e"
+  prompt_source: "reports/stage2_original_method_reproduction.md (V1, 逐字)"
+  views: [none, existing, dynamic, both]
+  dynamic:
+    trend_threshold: 0.15   # 归一化斜率阈值
+    vol_const: 0.05
+    vol_low: 0.30
+    vol_med: 1.00
+  tfidf_max_features: 4096
+  tfidf_min_df: 2
+
+model:
+  c_in: 21
+  win: 24
+  pred_len: 24
+  d_ts: 32
+  d_text: 32
+  d_proj: 32
+  vocab_dim: 4096   # 由 TF-IDF 实际词表覆盖
+
+training:
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.0
+  epochs_smoke: 5
+  contrastive_temperature: 0.1
+  forecast_weight: 1.0
+  align_weight: 0.5     # 仅 TS+Text 组使用
+  device: auto          # cuda if available else cpu
+
+groups:
+  - name: A_ts_only
+    text_view: none
+    use_align: false
+  - name: B_ts_existing
+    text_view: existing
+    use_align: false
+  - name: C_ts_dynamic
+    text_view: dynamic
+    use_align: true
+  - name: D_ts_both
+    text_view: both
+    use_align: true

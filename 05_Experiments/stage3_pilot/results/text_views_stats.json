@@ -1,0 +1,20 @@
+{
+  "n_samples": 8621,
+  "n_distinct_dynamic_text": 8489,
+  "frac_distinct": 0.9846885512121564,
+  "frac_meaningless_constant_windows": 0.0,
+  "potential_text_leakage": false,
+  "leakage_note": "dynamic_text derived solely from INPUT window, not target; no LLM; no invented physics",
+  "prompt_v1_sha256": "55aba83346bb7a5d7f07dab48302e4cd36609bafb2a2c3e517fa28e6a9b6e43e",
+  "raw_csv_sha256": "34ee981d07313e51da2a50bb600072c8ae4a69cb4b0651f4cb93a069d7a2ba63",
+  "window_size": 24,
+  "stride": 6,
+  "policy": "boundary",
+  "seed": 42,
+  "dynamic_rules": {
+    "trend_threshold": 0.15,
+    "vol_const": 0.05,
+    "vol_low": 0.3,
+    "vol_med": 1.0
+  }
+}
